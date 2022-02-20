@@ -37,7 +37,9 @@ check_sub_item()
   if [[ -z $sub_item ]];
   then
     command=$($TYAML_COMMAND -v $current_path)
-    [ "${command[@]}" != "null" ] && eval "${command[@]}" &
+    if [ "${command[@]}" != "null" ]; then
+        eval "${command[@]}" &
+    fi
   else
     menu_prompt=$selected_tag
     display_items
@@ -46,7 +48,7 @@ check_sub_item()
 
 display_items()
 {
-  tag_selected=$($TYAML_COMMAND -k $current_path | dmenu -p $menu_prompt -i)
+  tag_selected=$($TYAML_COMMAND -k $current_path | dmenu -p $menu_prompt)
   [ -z $tag_selected ] || check_sub_item $tag_selected
 }
 
