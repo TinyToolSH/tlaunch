@@ -22,6 +22,18 @@ MENU_CONFIG_PATH=$1
 TYAML_COMMAND="tyaml $MENU_CONFIG_PATH"
 menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
+CACHE=$HOME/.tmenu_cache
+
+CACHE=${XDG_CACHE_HOME:-"$HOME/.cache"}/tmenu_cache
+if [ ! -d "`dirname "$CACHE"`" ]; then
+	CACHE=$HOME/.dmenu_cache
+fi
+(
+	IFS=:
+	if stest -dqr -n "$CACHE" $PATH; then
+		stest -flx $PATH | sort -u > "$CACHE"
+	fi
+)
 
 ####################################################################################################
 # Functions
@@ -46,9 +58,15 @@ check_sub_item()
   fi
 }
 
+list_items()
+{
+    $TYAML_COMMAND -k $current_path
+    [ -f "$CACHE" ] && cat "$CACHE"
+}
+
 display_items()
 {
-  tag_selected=$($TYAML_COMMAND -k $current_path | dmenu -p $menu_prompt)
+  tag_selected=$(list_items | dmenu -p $menu_prompt)
   [ -z $tag_selected ] || check_sub_item $tag_selected
 }
 
