@@ -45,12 +45,14 @@ check_sub_item()
   current_path+=.$selected_tag
 
   sub_item=$($TYAML_COMMAND -k $current_path)
-  
-  if [[ -z $sub_item ]];
+
+  if [ -z $sub_item ];
   then
     command=$($TYAML_COMMAND -v $current_path)
-    if [ "${command[@]}" != "null" ]; then
-        eval "${command[@]}" &
+    if [ -z "$command" ] && [ ! -z "$selected_tag" ]; then
+        echo "$selected_tag" | /bin/sh &
+    elif [ "${command[@]}" != "null" ]; then
+        echo "${command[@]}" | /bin/sh &
     fi
   else
     menu_prompt=$selected_tag
