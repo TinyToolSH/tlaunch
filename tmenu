@@ -22,7 +22,7 @@
 TYAML_COMMAND="tyaml $TMENU_FILE"
 menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
-version=0.2.0
+version=0.3.1
 
 ####################################################################################################
 # Functions
