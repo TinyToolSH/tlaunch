@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/sh
 
 #This file is part of the TinyTools distribution (https://github.com/Calebe94/TinyTools).
 #Copyright (C)  TinyTools
@@ -18,8 +18,8 @@
 ####################################################################################################
 # VARIABLES 
 ####################################################################################################
-MENU_CONFIG_PATH=$1
-TYAML_COMMAND="tyaml $MENU_CONFIG_PATH"
+[ ! -f "$TMENU_FILE" ] && { echo "No menu file informed!"; exit 1; }
+TYAML_COMMAND="tyaml $TMENU_FILE"
 menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
 CACHE=$HOME/.tmenu_cache
@@ -63,7 +63,7 @@ check_sub_item()
 list_items()
 {
     $TYAML_COMMAND -k $current_path
-    [ -f "$CACHE" ] && cat "$CACHE"
+    ( $extended  && [ -f "$CACHE" ] && cat "$CACHE" )
 }
 
 display_items()
@@ -72,6 +72,15 @@ display_items()
   [ -z $tag_selected ] || check_sub_item $tag_selected
 }
 
+parse_arguments()
+{
+    while getopts "he" args; do
+        case "${args}" in
+            e) extended=true ;;
+            h) echo "help";;
+        esac
+    done
+}
 ####################################################################################################
 # Execute dmenu for the first time
 ####################################################################################################
