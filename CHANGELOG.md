@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     * Now we can fill a environment variable called `$TMENU_FILE`, that way we can place the variable at our `.bashrc` file;
     * Or we can use many menu files just changing the `$TMENU_FILE`;
     * Example: `TMENU_FILE=~/.config/tmenu.yml; tmenu`;
+* Updated `README.md` file with `TMENU_FILE` information;
 
 ### Removed
 
