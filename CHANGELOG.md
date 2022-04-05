@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+### Fixed
+
+### Changed
+
+### Removed
+
+## [0.3.0] - 2022-04-05
+
+### Added
+
 * Added function to parse arguments called `parse_arguments`;
     * Only `-v`(version) and `-h`(help/usage) options are available;
 * Added usage funtion to show help/usage options;
@@ -74,5 +84,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Removed comments
 
-[unreleased]: https://github.com/TinyToolSH/tmenu/compare/HEAD
+[unreleased]: https://github.com/TinyToolSH/tmenu/compare/0.3.0...HEAD
+[0.3.0]: https://github.com/TinyToolSH/tmenu/compare/0.2.0...0.3.0
+[0.2.0]: https://github.com/TinyToolSH/tmenu/compare/0.1.0...0.2.0
 [0.1.0]: https://github.com/TinyToolSH/tmenu/releases/tag/0.1.0
