@@ -45,7 +45,7 @@ So when you call `tmenu`, the menu is opened:
 Or `TMENU_FILE` can be assigned when calling `tmenu`:
 
 ```sh
-$ TMENU_FILE=quick_menu.yaml; tmenu
+$ export TMENU_FILE=quick_menu.yaml; tmenu
 $ #or
 $ echo "export TMENU_FILE=quick_menu.yaml" >> ~/.bashrc
 $ tmenu
