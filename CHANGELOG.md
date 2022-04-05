@@ -13,7 +13,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+* Changed how to enter the path to the menu file to `tmenu`.
+    * Before we used the first cli argument as the path of the menu file;
+    * Now we can fill a environment variable called `$TMENU_FILE`, that way we can place the variable at our `.bashrc` file;
+    * Or we can use many menu files just changing the `$TMENU_FILE`;
+    * Example: `TMENU_FILE=~/.config/tmenu.yml; tmenu`;
+* Updated `README.md` file with `TMENU_FILE` information;
+
 ### Removed
+
+* Removed unnecessary `dmenu` command line option;
 
 ## [0.1.0] - 2021-05-02
 

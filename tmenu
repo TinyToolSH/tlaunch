@@ -18,8 +18,8 @@
 ####################################################################################################
 # VARIABLES 
 ####################################################################################################
-MENU_CONFIG_PATH=$1
-TYAML_COMMAND="tyaml $MENU_CONFIG_PATH"
+[ ! -f "$TMENU_FILE" ] && { echo "No menu file informed!"; exit 1; }
+TYAML_COMMAND="tyaml $TMENU_FILE"
 menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
 
@@ -46,7 +46,7 @@ check_sub_item()
 
 display_items()
 {
-  tag_selected=$($TYAML_COMMAND -k $current_path | dmenu -p $menu_prompt -i)
+  tag_selected=$($TYAML_COMMAND -k $current_path | dmenu -p $menu_prompt)
   [ -z $tag_selected ] || check_sub_item $tag_selected
 }
 
