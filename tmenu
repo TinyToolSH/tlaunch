@@ -18,8 +18,8 @@
 ####################################################################################################
 # VARIABLES 
 ####################################################################################################
-MENU_CONFIG_PATH=$1
-TYAML_COMMAND="tyaml $MENU_CONFIG_PATH"
+[ ! -f "$TMENU_FILE" ] && { echo "No menu file informed!"; exit 1; }
+TYAML_COMMAND="tyaml $TMENU_FILE"
 menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
 
