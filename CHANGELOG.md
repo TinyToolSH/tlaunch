@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+* Removed unnecessary `dmenu` command line option;
+
 ## [0.1.0] - 2021-05-02
 
 ### Added
