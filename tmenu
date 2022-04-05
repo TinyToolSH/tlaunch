@@ -22,6 +22,7 @@
 TYAML_COMMAND="tyaml $TMENU_FILE"
 menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
+version=0.2.0
 
 ####################################################################################################
 # Functions
@@ -50,8 +51,29 @@ display_items()
   [ -z $tag_selected ] || check_sub_item $tag_selected
 }
 
+usage()
+{
+    echo "usage: tmenu [-hv]"
+    echo "e.g: export TMENU_FILE=quick_menu.yaml; tmenu"
+    echo "options:"
+    echo "-v:  prints version information to stdout, then exits;"
+    echo "-h: shows this usage message."
+}
+
+parse_arguments()
+{
+    while getopts "hv" args; do
+        case "${args}" in
+            h) usage; exit 0 ;;
+            v) echo "$version"; exit 0 ;;
+            *) usage; exit 1 ;;
+        esac
+    done
+}
+
 ####################################################################################################
 # Execute dmenu for the first time
 ####################################################################################################
 
+parse_arguments "$@"
 display_items

@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+* Added function to parse arguments called `parse_arguments`;
+    * Only `-v`(version) and `-h`(help/usage) options are available;
+* Added usage funtion to show help/usage options;
+
 ### Fixed
 
 ### Changed
