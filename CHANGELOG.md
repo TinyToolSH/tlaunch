@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+* Added `-e`(extended) option, to list the menu file entries along with all binaries at \$PATH variable;
+
 ### Fixed
 
 ### Changed
