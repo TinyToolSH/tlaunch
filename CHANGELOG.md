@@ -9,7 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* Added `-e`(extended) option, to list the menu file entries along with all binaries at \$PATH variable;
+### Fixed
+
+### Changed
+
+### Removed
+
+## [0.4.0] - 2022-04-07
+
+### Added
+
+* Added `-e`(extended) option, to list the menu file entries along with all binaries at `$PATH` variable;
 
 ### Fixed
 
@@ -98,7 +108,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Removed comments
 
-[unreleased]: https://github.com/TinyToolSH/tmenu/compare/0.3.1...HEAD
+[unreleased]: https://github.com/TinyToolSH/tmenu/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/TinyToolSH/tmenu/compare/0.3.1...0.4.0
 [0.3.1]: https://github.com/TinyToolSH/tmenu/compare/0.3.0...0.3.1
 [0.3.0]: https://github.com/TinyToolSH/tmenu/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/TinyToolSH/tmenu/compare/0.1.0...0.2.0

@@ -22,7 +22,7 @@
 TYAML_COMMAND="tyaml $TMENU_FILE"
 menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
-version=0.3.1
+version=0.4.0
 extended=false
 
 CACHE=${XDG_CACHE_HOME:-"$HOME/.cache"}/tmenu_cache
