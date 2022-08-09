@@ -1,7 +1,7 @@
 # `tmenu`
 #### A simple dmenu wrapper to create custom menus
 
-You use dmenu and want to build menus in a straight forward way? What about even having submenus? tmenu may help.
+You use `dmenu` and want to build menus in a straight forward way? What about even having sub-menus? `tmenu` may help.
 
 ## Dependencies
 
@@ -20,7 +20,7 @@ sudo make install
 
 ## Usage
 
-tmenu always needs a yaml file to express the custom menu structure, like this one:
+`tmenu` always needs a `yaml` file to express the custom menu structure, like this one:
 
 ```yaml
 quick_menu:
@@ -56,7 +56,7 @@ $ tmenu
 
 # Team
 
-| <img src="https://github.com/Calebe94.png?size=200" alt="Edimar Calebe Castanho"> | <img src="https://github.com/gbgabo.png?size=200" alt="Gabriel Gaboardi"> | 
+| <img src="https://github.com/Calebe94.png?size=200" alt="Edimar Calebe Castanho"> | <img src="https://github.com/gbgabo.png?size=200" alt="Gabriel Gaboardi"> |
 |:---------------------------------------------------------------------------------:|:-------------------------------------------------------------------------:|
 | [Edimar Calebe Castanho (Calebe94)](https://github.com/Calebe94)                  | [Gabriel Gaboardi (Gabo)](https://github.com/gbgabo)                      |
 
