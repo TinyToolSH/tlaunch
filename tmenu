@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 #This file is part of the TinyTools distribution (https://github.com/Calebe94/TinyTools).
 #Copyright (C)  TinyTools
@@ -16,7 +16,7 @@
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ####################################################################################################
-# VARIABLES 
+# VARIABLES
 ####################################################################################################
 [ ! -f "$TMENU_FILE" ] && { echo "No menu file informed!"; exit 1; }
 TYAML_COMMAND="tyaml $TMENU_FILE"
@@ -45,7 +45,7 @@ check_sub_item()
   current_path+=".$selected_tag"
 
   sub_item="$($TYAML_COMMAND -k $current_path)"
-  
+
   if [[ -z "$sub_item" ]];
   then
     command="$($TYAML_COMMAND -v $current_path)"
@@ -62,14 +62,37 @@ check_sub_item()
 
 list_items()
 {
+    wmctrl -l | awk '$3=$2=""; {print}'
     $TYAML_COMMAND -k $current_path
     ( $extended  && [ -f "$CACHE" ] && cat "$CACHE" )
 }
 
 display_items()
 {
-  tag_selected="$(list_items | dmenu -p $menu_prompt)"
-  [ -z "$tag_selected" ] || check_sub_item "$tag_selected"
+  tag_selected="$(list_items | dmenu -p $menu_prompt -l 10 -c)"
+  if [ -n "$(echo $tag_selected | awk '{print $2}')" ];then
+    activate_window "$tag_selected"
+  else
+    [ -z "$tag_selected" ] || check_sub_item "$tag_selected"
+  fi
+
+}
+
+activate_window()
+{
+    client="$1"
+    client_name="$(echo "$client" | awk '$1=""; {print}' | cut -c 2-)"
+    client_pid="$(echo "$client" | awk '{print $1}')"
+    client_pid_scratchpad=$(grep "$client_pid" /tmp/dwm_scratchpad 2> /dev/null | awk '{print $1}')
+
+    # Check if client is in scratchpad
+    # If it is, send a signal to dwm (depends on dwmc patch)
+    # If it is not use wmctrl
+    if [ -z "$client_pid_scratchpad" ]; then
+        wmctrl -a "$client_name"
+    else
+        xsetroot -name "fsignal:scratchpad_show v $client_pid"
+    fi
 }
 
 usage()
@@ -97,6 +120,9 @@ parse_arguments()
 ####################################################################################################
 # Execute dmenu for the first time
 ####################################################################################################
+
+[ -z "$(which wmctrl)" ] && echo '"wmctrl" not found.' && exit 1
+[ -z "$(which tyaml)" ] && echo '"tyaml" not found.' && exit 1
 
 parse_arguments "$@"
 display_items
