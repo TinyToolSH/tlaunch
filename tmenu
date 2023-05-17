@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 #This file is part of the TinyTools distribution (https://github.com/Calebe94/TinyTools).
 #Copyright (C)  TinyTools
@@ -16,7 +16,7 @@
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ####################################################################################################
-# VARIABLES 
+# VARIABLES
 ####################################################################################################
 [ ! -f "$TMENU_FILE" ] && { echo "No menu file informed!"; exit 1; }
 TYAML_COMMAND="tyaml $TMENU_FILE"
@@ -24,6 +24,8 @@ menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
 version=0.4.0
 extended=false
+dmenu_args=""
+use_fzf=1
 
 CACHE=${XDG_CACHE_HOME:-"$HOME/.cache"}/tmenu_cache
 if [ ! -d "`dirname "$CACHE"`" ]; then
@@ -45,7 +47,7 @@ check_sub_item()
   current_path+=".$selected_tag"
 
   sub_item="$($TYAML_COMMAND -k $current_path)"
-  
+
   if [[ -z "$sub_item" ]];
   then
     command="$($TYAML_COMMAND -v $current_path)"
@@ -66,10 +68,24 @@ list_items()
     ( $extended  && [ -f "$CACHE" ] && cat "$CACHE" )
 }
 
+run_dmenu()
+{
+  if [ -z "$dmenu_args" ]; then
+    dmenu -p "$menu_prompt"
+  else
+    dmenu -p "$menu_prompt" $dmenu_args
+  fi
+}
+
 display_items()
 {
-  tag_selected="$(list_items | dmenu -p $menu_prompt)"
-  [ -z "$tag_selected" ] || check_sub_item "$tag_selected"
+  if [ fzf ]; then
+    tag_selected="$(list_items | fzf)"
+    [ -z "$tag_selected" ] || check_sub_item "$tag_selected"
+  else
+    tag_selected="$(list_items | $(run_dmenu))"
+    [ -z "$tag_selected" ] || check_sub_item "$tag_selected"
+  fi
 }
 
 usage()
@@ -84,11 +100,15 @@ usage()
 
 parse_arguments()
 {
-    while getopts "hve" args; do
+    while getopts "hved:" args; do
         case "${args}" in
             h) usage; exit 0 ;;
             v) echo "$version"; exit 0 ;;
             e) extended=true ;;
+            d)
+                dmenu_args="$OPTARG"
+                echo "$dmenu_args"
+                ;;
             *) usage; exit 1 ;;
         esac
     done
