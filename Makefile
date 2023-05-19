@@ -6,19 +6,19 @@ all:
 	@echo "all target"
 
 install:
-	@echo "Installing tmenu..."
-	install -m 555 tmenu $(DESTDIR)/$(prefix)/bin/tmenu
+	@echo "Installing tlaunch..."
+	install -m 555 tlaunch $(DESTDIR)/$(prefix)/bin/tlaunch
 	install -D menu.yaml -t /etc/tinytools/
 	@echo "done!"
 
 clean:
-	@echo "Cleaning tmenu"
+	@echo "Cleaning tlaunch"
 
 distclean: clean
 
 uninstall:
-	@echo "Uninstall tmenu"
-	rm -f $(DESTDIR)/$(prefix)/bin/tmenu
+	@echo "Uninstall tlaunch"
+	rm -f $(DESTDIR)/$(prefix)/bin/tlaunch
 	rm -f /etc/tinytools/menu.yaml
 	@echo "done!"
 
