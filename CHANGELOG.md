@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+* Renamed project to `tlaunch`;
+
 ### Fixed
 
 ### Changed
@@ -33,7 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-* Fixed `tmenu` version;
+* Fixed `tlaunch` version;
 
 ### Changed
 
@@ -61,12 +63,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-* Changed how to enter the path to the menu file to `tmenu`.
+* Changed how to enter the path to the menu file to `tlaunch`.
     * Before we used the first cli argument as the path of the menu file;
-    * Now we can fill a environment variable called `$TMENU_FILE`, that way we can place the variable at our `.bashrc` file;
-    * Or we can use many menu files just changing the `$TMENU_FILE`;
-    * Example: `TMENU_FILE=~/.config/tmenu.yml; tmenu`;
-* Updated `README.md` file with `TMENU_FILE` information;
+    * Now we can fill a environment variable called `$TLAUNCH_FILE`, that way we can place the variable at our `.bashrc` file;
+    * Or we can use many menu files just changing the `$TLAUNCH_FILE`;
+    * Example: `TLAUNCH_FILE=~/.config/tlaunch.yml; tlaunch`;
+* Updated `README.md` file with `TLAUNCH_FILE` information;
 
 ### Removed
 
@@ -77,40 +79,40 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
   * Added templates to repository
-  * Added licence file to tmenu
-  * Added Makefile to tmenu
+  * Added licence file to tlaunch
+  * Added Makefile to tlaunch
   * added usage heading
   * added demo screenshot
   * Made case insensitive flag default on dmenu
-  * Added a rewritten tmenu
+  * Added a rewritten tlaunch
 
 ### Changed
 
 * script now receives different menus as parameters
-* Renamed pymenu to tmenu
+* Renamed pymenu to tlaunch
 * Moved files to repo root folder
-* Updated tmenu Makefile
-* Updated tmenu README
+* Updated tlaunch Makefile
+* Updated tlaunch README
 * updated imade example + source code license disclaimer
 * Changed code structure and added recursion
-* Changed tmenu
+* Changed tlaunch
 * Renamed example to menu again
-* Removed tyaml variable from tmenu script
+* Removed tyaml variable from tlaunch script
 * Removed extensions from scripts
 
 ### Fixed
 
-* Fixed missing slash in tmenu's Makefile
-* Fixed missing flag in tmenu's Makefile
+* Fixed missing slash in tlaunch's Makefile
+* Fixed missing flag in tlaunch's Makefile
 * Fixed bug with tags and commands
 
 ### Removed
 
 * Removed comments
 
-[unreleased]: https://github.com/TinyToolSH/tmenu/compare/0.4.0...HEAD
-[0.4.0]: https://github.com/TinyToolSH/tmenu/compare/0.3.1...0.4.0
-[0.3.1]: https://github.com/TinyToolSH/tmenu/compare/0.3.0...0.3.1
-[0.3.0]: https://github.com/TinyToolSH/tmenu/compare/0.2.0...0.3.0
-[0.2.0]: https://github.com/TinyToolSH/tmenu/compare/0.1.0...0.2.0
-[0.1.0]: https://github.com/TinyToolSH/tmenu/releases/tag/0.1.0
+[unreleased]: https://github.com/TinyToolSH/tlaunch/compare/0.4.0...HEAD
+[0.4.0]: https://github.com/TinyToolSH/tlaunch/compare/0.3.1...0.4.0
+[0.3.1]: https://github.com/TinyToolSH/tlaunch/compare/0.3.0...0.3.1
+[0.3.0]: https://github.com/TinyToolSH/tlaunch/compare/0.2.0...0.3.0
+[0.2.0]: https://github.com/TinyToolSH/tlaunch/compare/0.1.0...0.2.0
+[0.1.0]: https://github.com/TinyToolSH/tlaunch/releases/tag/0.1.0

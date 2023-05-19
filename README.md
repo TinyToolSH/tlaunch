@@ -1,7 +1,7 @@
-# `tmenu`
+# `tlaunch`
 #### A simple dmenu wrapper to create custom menus
 
-You use `dmenu` and want to build menus in a straight forward way? What about even having sub-menus? `tmenu` may help.
+You use `dmenu` and want to build menus in a straight forward way? What about even having sub-menus? `tlaunch` may help.
 
 ## Dependencies
 
@@ -10,9 +10,9 @@ You use `dmenu` and want to build menus in a straight forward way? What about ev
 
 ## Instalation
 
-To install `tmenu` you can edit the `Makefile` to match your local setup (`tmenu` is installed into the `/usr/local/bin` by default).
+To install `tlaunch` you can edit the `Makefile` to match your local setup (`tlaunch` is installed into the `/usr/local/bin` by default).
 
-Afterwards enter the following command to install `tmenu` (if necessary as root).
+Afterwards enter the following command to install `tlaunch` (if necessary as root).
 
 ```bash
 sudo make install
@@ -20,7 +20,7 @@ sudo make install
 
 ## Usage
 
-`tmenu` always needs a `yaml` file to express the custom menu structure, like this one:
+`tlaunch` always needs a `yaml` file to express the custom menu structure, like this one:
 
 ```yaml
 quick_menu:
@@ -35,23 +35,23 @@ quick_menu:
   dotfiles:
     vim: vim $HOME/.vimrc
     bash: vim $HOME/.bashrc
-    tmenus: vim $HOME/tmenus
+    tlaunchs: vim $HOME/tlaunchs
   another_option: notify-send "you get the idea"
 ```
-The menu file should be assigned to the `TMENU_FILE` variable.
+The menu file should be assigned to the `TLAUNCH_FILE` variable.
 It can be used as an environment variable at your `.bashrc` or `.zshrc` file.
-So when you call `tmenu`, the menu is opened:
+So when you call `tlaunch`, the menu is opened:
 
-Or `TMENU_FILE` can be assigned when calling `tmenu`:
+Or `TLAUNCH_FILE` can be assigned when calling `tlaunch`:
 
 ```sh
-$ export TMENU_FILE=quick_menu.yaml; tmenu
+$ export TLAUNCH_FILE=quick_menu.yaml; tlaunch
 $ #or
-$ echo "export TMENU_FILE=quick_menu.yaml" >> ~/.bashrc
-$ tmenu
+$ echo "export TLAUNCH_FILE=quick_menu.yaml" >> ~/.bashrc
+$ tlaunch
 ```
 <p align="center">
-  <img src="https://raw.githubusercontent.com/TinyToolSH/tmenu/main/.screenshots/example.png" alt="tmenu example">
+  <img src="https://raw.githubusercontent.com/TinyToolSH/tlaunch/main/.screenshots/example.png" alt="tlaunch example">
 </p>
 
 # Team

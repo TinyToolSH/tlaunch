@@ -18,16 +18,16 @@
 ####################################################################################################
 # VARIABLES 
 ####################################################################################################
-[ ! -f "$TMENU_FILE" ] && { echo "No menu file informed!"; exit 1; }
-TYAML_COMMAND="tyaml $TMENU_FILE"
+[ ! -f "$TLAUNCH_FILE" ] && { echo "No menu file informed!"; exit 1; }
+TYAML_COMMAND="tyaml $TLAUNCH_FILE"
 menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
 version=0.4.0
 extended=false
 
-CACHE=${XDG_CACHE_HOME:-"$HOME/.cache"}/tmenu_cache
+CACHE=${XDG_CACHE_HOME:-"$HOME/.cache"}/tlaunch_cache
 if [ ! -d "`dirname "$CACHE"`" ]; then
-    CACHE=$HOME/.tmenu_cache
+    CACHE=$HOME/.tlaunch_cache
 fi
 (
 	IFS=:
@@ -74,8 +74,8 @@ display_items()
 
 usage()
 {
-    echo "usage: tmenu [-hve]"
-    echo "e.g: export TMENU_FILE=quick_menu.yaml; tmenu"
+    echo "usage: tlaunch [-hve]"
+    echo "e.g: export TLAUNCH_FILE=quick_menu.yaml; tlaunch"
     echo "options:"
     echo "-v: prints version information to stdout, then exits;"
     echo "-e: lists your menu file entries along with your binaries at your \$PATH variable;"
