@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 
 #This file is part of the TinyTools distribution (https://github.com/Calebe94/TinyTools).
 #Copyright (C)  TinyTools
@@ -16,23 +16,25 @@
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ####################################################################################################
-# VARIABLES 
+# VARIABLES
 ####################################################################################################
 [ ! -f "$TLAUNCH_FILE" ] && { echo "No menu file informed!"; exit 1; }
 TYAML_COMMAND="tyaml $TLAUNCH_FILE"
 menu_prompt=$($TYAML_COMMAND -k)
 current_path=$menu_prompt
+menu_utility=dmenu
+menu_utility_arguments=""
 version=0.4.0
 extended=false
 
 CACHE=${XDG_CACHE_HOME:-"$HOME/.cache"}/tlaunch_cache
-if [ ! -d "`dirname "$CACHE"`" ]; then
+if [ ! -d "$(dirname "$CACHE")" ]; then
     CACHE=$HOME/.tlaunch_cache
 fi
 (
 	IFS=:
-	if stest -dqr -n "$CACHE" $PATH; then
-		stest -flx $PATH | sort -u > "$CACHE"
+	if stest -dqr -n "$CACHE" "$PATH"; then
+		stest -flx "$PATH" | sort -u > "$CACHE"
 	fi
 )
 ####################################################################################################
@@ -44,15 +46,15 @@ check_sub_item()
   selected_tag="$1"
   current_path+=".$selected_tag"
 
-  sub_item="$($TYAML_COMMAND -k $current_path)"
-  
+  sub_item="$($TYAML_COMMAND -k "$current_path")"
+
   if [[ -z "$sub_item" ]];
   then
-    command="$($TYAML_COMMAND -v $current_path)"
-    if [ -z "$command" ] && [ ! -z "$selected_tag" ]; then
+    command="$($TYAML_COMMAND -v "$current_path")"
+    if [ -z "$command" ] && [ -n "$selected_tag" ]; then
         echo "$selected_tag" | /bin/sh &
-    elif [ "${command[@]}" != "null" ]; then
-        echo "${command[@]}" | /bin/sh &
+    elif [ "${command[*]}" != "null" ]; then
+        echo "${command[*]}" | /bin/sh &
     fi
   else
     menu_prompt="$selected_tag"
@@ -62,13 +64,16 @@ check_sub_item()
 
 list_items()
 {
-    $TYAML_COMMAND -k $current_path
+    $TYAML_COMMAND -k "$current_path"
     ( $extended  && [ -f "$CACHE" ] && cat "$CACHE" )
 }
 
 display_items()
 {
-  tag_selected="$(list_items | dmenu -p $menu_prompt)"
+
+    tag_selected="$(list_items | $menu_utility -a "$menu_utility_arguments")"
+
+
   [ -z "$tag_selected" ] || check_sub_item "$tag_selected"
 }
 
@@ -84,10 +89,15 @@ usage()
 
 parse_arguments()
 {
-    while getopts "hve" args; do
+    while getopts "hvefdxra:" args; do
         case "${args}" in
             h) usage; exit 0 ;;
             v) echo "$version"; exit 0 ;;
+            f) menu_utility="tmenu -f" ;;
+            d) menu_utility="tmenu -d" ;;
+            x) menu_utility="tmenu -x" ;;
+            r) menu_utility="tmenu -r" ;;
+            a) menu_utility_arguments="${OPTARG}" ;;
             e) extended=true ;;
             *) usage; exit 1 ;;
         esac
